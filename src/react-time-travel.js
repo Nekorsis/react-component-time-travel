@@ -48,9 +48,13 @@ export function timeTravel(ComponentClass) {
 
       const ref = node => {
         if (!node) return
+
         this.initHistory({ props: this.props, state: node.state })
         const originalSetState = node.setState.bind(node)
-        node.setState = patchSetState(originalSetState)
+        if (!node.isPatchedByReactTimeTravel) {
+          node.setState = patchSetState(originalSetState)
+          node.isPatchedByReactTimeTravel = true
+        }
       }
 
       const props = Object.assign({ ref }, this.props)
