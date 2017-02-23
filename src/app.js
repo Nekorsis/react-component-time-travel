@@ -35,7 +35,9 @@ class App extends React.Component {
   render() {
     const createColorButton = color => React.DOM.button({ onClick: e => this.setState({ color: color })}, color)
 
-    return React.DOM.div(null,
+    return React.DOM.div({ style: { margin: '30px auto', width: 300 } },
+      'Color is parent prop. Count is component state',
+      React.DOM.hr(),
       createColorButton('dimgray'),
       createColorButton('yellow'),
       createColorButton('tomato'),
