@@ -1,3 +1,5 @@
+import { timeTravel } from './react-time-travel.js'
+
 class Counter extends React.Component {
   constructor() {
     super()
@@ -20,6 +22,8 @@ class Counter extends React.Component {
   }
 }
 
+const CounterWithTimeTravel = timeTravel(Counter)
+
 class App extends React.Component {
   constructor() {
     super()
@@ -31,7 +35,7 @@ class App extends React.Component {
   render() {
     return React.DOM.div(null,
       React.DOM.input({ onChange: e => this.setState({ color: e.target.value }), value: this.state.color }),
-      React.createElement(Counter, { key: 'counter-1', color: this.state.color }),
+      React.createElement(CounterWithTimeTravel, { color: this.state.color }),
     )
   }
 }
