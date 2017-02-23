@@ -4,6 +4,10 @@
 
 ![demo](http://s.csssr.ru/U09LGPMEU/20170223081516.gif)
 
+[Demo page](https://nitive.github.io/react-component-time-travel/)
+> Demo requires ES Modules browser support to works.
+> It currently works in Safari TP and Edge.
+
 External API:
 ```jsx
 import { timeTravel } from './react-component-time-travel.js' // not published yet
@@ -19,6 +23,3 @@ function App() {
   )
 }
 ```
-
-Demo requires ES Modules browser support to works.  
-It currently works in Safari TP and Edge.
