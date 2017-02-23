@@ -1,4 +1,4 @@
-import { timeTravel } from './react-time-travel.js'
+import { timeTravel } from './react-component-time-travel.js'
 
 class Counter extends React.Component {
   constructor() {
