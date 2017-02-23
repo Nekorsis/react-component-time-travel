@@ -10,7 +10,10 @@ export function timeTravel(ComponentClass) {
 
       this.revision = ({ props, statePatch }) => {
         this.setState(state => {
-          const prevRecord = last(state.history)
+          const revisionIndex = this.getIndexAsNumber(state.currentRevisionIndex) + 1
+          const prevHistory = state.history.slice(0, revisionIndex)
+          const prevRecord = last(prevHistory)
+
           const newRecord = {
             props: props
               ? props
@@ -20,10 +23,9 @@ export function timeTravel(ComponentClass) {
               : prevRecord.state
           }
 
-          const revisionIndex = this.getIndexAsNumber(state.currentRevisionIndex) + 1
           return {
             currentRevisionIndex: revisionIndex,
-            history: [...state.history.slice(0, revisionIndex), newRecord]
+            history: [...prevHistory, newRecord]
           }
         })
       }
@@ -34,7 +36,6 @@ export function timeTravel(ComponentClass) {
     }
 
     componentWillUpdate(nextProps, nextState) {
-      console.log('nextState.history', nextState.history)
       if (this.props !== nextProps) {
         this.revision({ props: nextProps })
       }
