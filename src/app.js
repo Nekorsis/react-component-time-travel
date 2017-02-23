@@ -28,13 +28,17 @@ class App extends React.Component {
   constructor() {
     super()
     this.state = {
-      color: 'green',
+      color: 'dimgray',
     };
   }
 
   render() {
+    const createColorButton = color => React.DOM.button({ onClick: e => this.setState({ color: color })}, color)
+
     return React.DOM.div(null,
-      React.DOM.input({ onChange: e => this.setState({ color: e.target.value }), value: this.state.color }),
+      createColorButton('dimgray'),
+      createColorButton('yellow'),
+      createColorButton('tomato'),
       React.createElement(CounterWithTimeTravel, { color: this.state.color }),
     )
   }
